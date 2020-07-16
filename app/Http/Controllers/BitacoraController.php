@@ -60,7 +60,8 @@ class BitacoraController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bitacora = Bitacora::find($id);
+        return view('bitacora.edit', compact('bitacora'));
     }
 
     /**
@@ -72,7 +73,11 @@ class BitacoraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $bitacora= Bitacora::find($id);
+        $bitacora->fill($request->all())->save();
+        
+        return redirect()->route('bitacora.edit',$bitacora->id)
+            ->with('info','Titulo Actualizado con exito');
     }
 
     /**
@@ -83,6 +88,7 @@ class BitacoraController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $bitacora = Bitacora::find($id)->delete();
+        return back()->with('info','Eliminado correctamente');
     }
 }

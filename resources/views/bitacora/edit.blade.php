@@ -9,11 +9,12 @@
             <div class="card">
 
                 <div class="card-header">
-                    Crear nuevo Trabajo de titulación
+                    Editar Titulo
                 </div>
 
                 <div class="card-body">
-                    {!! Form::open(['route' => 'bitacora.store'])!!}
+                    {!! Form::model($bitacora,['route' => ['bitacora.update', $bitacora->id],'method'=>'PUT'])!!}
+                    @include('bitacora.partials.form')
 
                     {{ Form::hidden('user_id', auth()->user()->id)}}
 
@@ -21,12 +22,12 @@
                         {{  Form::label('parametro1', 'Ingrese nombre del trabajo de titulaión')    }}
                         {{  Form::text('nombre', null, ['class' => 'form-control'])    }}
                     </div>
-
+                    <!--
                     <div class="form-group">
                         {{  Form::label('parametro2', 'Ingrese nombre del profesor guía')    }}
                         {{  Form::text('profesor', null, ['class' => 'form-control'])    }}
                     </div>
-
+                    -->
                     <div class="form-group">
                         {{  Form::submit('guardar', ['class' => 'btn btn-primary '])    }}
                     </div>
