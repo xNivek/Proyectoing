@@ -18,6 +18,8 @@ Route::get('/', function () {
 
 Route::resource('bitacora', 'BitacoraController');
 Route::resource('avance', 'AvanceController');
+Route::resource('user', 'UserController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
