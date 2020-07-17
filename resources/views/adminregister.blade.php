@@ -45,11 +45,7 @@
 
                             <div class="col-md-6">
                                 <select class= "form-control" name="rol" id="rol">
-                                    <option>Seleccionar</option>
-                                    <option value="Estudiante tesista">Estudiante tesista</option>
-                                    <option value="Profesor guia">Profesor guía</option>
-                                    <option value="Secretaria">Secretaria</option>
-                                    <option value="Encargado de titulacion">Encargador de titulación</option>
+                                    <option value="Administrador">Administrador</option>
                                 </select>
                             </div>
                         </div>
@@ -79,7 +75,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Registrar
+                                    Registrar   
                                 </button>
                             </div>
                         </div>

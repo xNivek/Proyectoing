@@ -13,12 +13,13 @@
                 </div>
 
                 <div class="card-body">
-                <p><strong>Nombre del trabajo: </strong>{{$bitacora->name}}</p>
+                <p><strong>Nombre del trabajo: </strong>{{$bitacora->nombre}}</p>
                 <p><strong>Nombre del profesor guía: </strong>{{$bitacora->profesor}}</p>
                 <p><strong>Usuario que creo el trabajo: </strong>{{App\User::find($bitacora->user_id)->name}}</p>
                 </div>
 
             </div>
+                <a href="{{ route('bitacora.index') }}"class= "btn btn-primary">Volver</a>
         </div>
     </div>
 </div>

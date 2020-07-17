@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+route::get("/admin", function(){
+    return view('adminregister');
+});
+
 
 Route::resource('bitacora', 'BitacoraController');
 Route::resource('avance', 'AvanceController');

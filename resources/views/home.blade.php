@@ -37,7 +37,9 @@
 
                     Iniciaste sesión exitosamente!
                 </div>
+                    
             </div>
+                <a href="http://127.0.0.1:8000/">Ir a página principal</a>
         </div>
     </div>
 </div>

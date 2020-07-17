@@ -24,6 +24,7 @@
                                     <th>Rol</th>
                                     <th>Password</th>
                                     <th>Estado</th>
+                                    <th>Acción</th>
                                 </tr>
                             </thread>
 
@@ -38,7 +39,7 @@
                                         <td>{{$user->status}}</td>
                                         <td>                       
                                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-primary">Editar</a>
-                                            <a href="" class="btn btn-sm btn-danger">Eliminar</a>
+                                            
                                         </td>
                                     </tr>
                                 @endforeach

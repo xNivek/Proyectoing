@@ -139,6 +139,7 @@
                                         <button type="submit" class="btn btn-primary" >
                                             Guardar
                                         </button>
+                                        <a href="{{route('user.index')}}" style="float:right" class="btn bn-sm btn-primary">Volver</a>
                                     </div>
                                 </div>
                             </form>
