@@ -54,33 +54,53 @@
                     </div>
 
                     <div class="form-group">
-                        {{  Form::label('parametro8', 'Ingrese nombre del estudiante 2')    }}
+                        {{  Form::label('parametro8', 'Ingrese carrera del estudiante 1')    }}
+                        {{  Form::text('carreraestudiante1', null, ['class' => 'form-control'])    }}
+                    </div>
+
+                    <div class="form-group">
+                        {{  Form::label('parametro9', 'Ingrese nombre del estudiante 2')    }}
                         {{  Form::text('estudiante2', null, ['class' => 'form-control'])    }}
                     </div>
 
                     <div class="form-group">
-                        {{  Form::label('parametro9', 'Ingrese rut del estudiante 2')    }}
+                        {{  Form::label('parametro10', 'Ingrese rut del estudiante 2')    }}
                         {{  Form::text('rutestudiante2', null, ['class' => 'form-control'])    }}
                     </div>
 
                     <div class="form-group">
-                        {{  Form::label('parametro10', 'Ingrese nombre del estudiante 3')    }}
+                        {{  Form::label('parametr11', 'Ingrese carrera del estudiante 2')    }}
+                        {{  Form::text('carreraestudiante2', null, ['class' => 'form-control'])    }}
+                    </div>
+
+                    <div class="form-group">
+                        {{  Form::label('parametro12', 'Ingrese nombre del estudiante 3')    }}
                         {{  Form::text('estudiante3', null, ['class' => 'form-control'])    }}
                     </div>
 
                     <div class="form-group">
-                        {{  Form::label('parametro11', 'Ingrese rut del estudiante 3')    }}
+                        {{  Form::label('parametro13', 'Ingrese rut del estudiante 3')    }}
                         {{  Form::text('rutestudiante3', null, ['class' => 'form-control'])    }}
                     </div>
 
                     <div class="form-group">
-                        {{  Form::label('parametro12', 'Ingrese nombre del estudiante 4')    }}
+                        {{  Form::label('parametro14', 'Ingrese carrera del estudiante 3')    }}
+                        {{  Form::text('carreraestudiante3', null, ['class' => 'form-control'])    }}
+                    </div>
+
+                    <div class="form-group">
+                        {{  Form::label('parametro15', 'Ingrese nombre del estudiante 4')    }}
                         {{  Form::text('estudiante4', null, ['class' => 'form-control'])    }}
                     </div>
 
                     <div class="form-group">
-                        {{  Form::label('parametro13', 'Ingrese rut del estudiante 4')    }}
+                        {{  Form::label('parametro16', 'Ingrese rut del estudiante 4')    }}
                         {{  Form::text('rutestudiante4', null, ['class' => 'form-control'])    }}
+                    </div>
+
+                    <div class="form-group">
+                        {{  Form::label('parametro17', 'Ingrese carrera del estudiante 4')    }}
+                        {{  Form::text('carreraestudiante4', null, ['class' => 'form-control'])    }}
                     </div>
 
                     <div class="form-group">
