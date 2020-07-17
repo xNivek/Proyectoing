@@ -16,8 +16,19 @@ class CreateBitacorasTable extends Migration
         Schema::create('bitacoras', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre', 255);
-            $table->string('profesor', 255);
-            $table->integer('user_id')->unsigned();
+            $table->string('profesor1', 255);
+            $table->string('rutprofesor1', 255);
+            $table->string('profesor2', 255)->nullable();
+            $table->string('rutprofesor2', 255)->nullable();
+            $table->string('estudiante1', 255);
+            $table->string('rutestudiante1', 255);
+            $table->string('estudiante2', 255)->nullable();
+            $table->string('rutestudiante2', 255)->nullable();
+            $table->string('estudiante3', 255)->nullable();
+            $table->string('rutestudiante3', 255)->nullable();
+            $table->string('estudiante4', 255)->nullable();
+            $table->string('rutestudiante4', 255)->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
 
             $table->foreign('user_id')->references('id')->on('users');    
             

@@ -68,27 +68,29 @@
     
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
-                <div class="top-right links">
+                <div class="content">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}" class="top-right links">Home</a>
+                        <div class="title m-b-md">
+                            Bitacora web
+                        </div>
+
+                        <div class="links">
+                            <a href="http://127.0.0.1:8000/bitacora">Bitacora</a>
+                            <a href="http://127.0.0.1:8000/user">Usuarios</a>
+                        
+                        </div>
                     @else
                         <!--<a href="{{ route('login') }}">Login</a>-->
-                        <a href="{{ route('login') }}">Iniciar sesión</a>
+                        <a href="{{ route('login') }}" class="top-right links">Iniciar sesión</a>
+                        <div class="title m-b-md">
+                            Bitacora web
+                        </div>
                     @endauth
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Bitacora web
-                </div>
-
-                <div class="links">
-                    <a href="http://127.0.0.1:8000/bitacora">Bitacora</a>
-                    <a href="http://127.0.0.1:8000/user">Usuarios</a>
-                  
-                </div>
-            </div>
+           
         </div>
     </body>
 </html>
