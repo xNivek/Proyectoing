@@ -74,11 +74,32 @@
                         <div class="title m-b-md">
                             Bitacora web
                         </div>
-
-                        <div class="links">
-                            <a href="http://127.0.0.1:8000/bitacora">Bitacora</a>
-                            <a href="http://127.0.0.1:8000/user">Usuarios</a>
-                        
+                        <!-- Vista para rol administrador-->
+                        @if(Auth::user()!=null && Auth::user()->rol=='Administrador' )
+                            <div class="links">
+                                
+                                <a href="http://127.0.0.1:8000/user">Usuarios</a>
+                            
+                            </div>
+                        @endif
+                                <!-- Vista para rol secretaria-->
+                                @if(Auth::user()!=null && (Auth::user()->rol=='Secretaria' || Auth::user()->rol=='Encargado de titulacion'))
+                                    <div class="links">
+                                        <a href="http://127.0.0.1:8000/bitacora">Bitacora</a>
+                                    </div>
+                                @endif
+                                    <!-- Vista para rol de estudiante-->
+                                    @if(Auth::user()!=null && Auth::user()->rol=='Estudiante tesista' )
+                                        <div class="links">
+                                            <a href=" ">Revisa tú bitacora</a>
+                                        </div>
+                                    @endif
+                                        <!-- Vista para rol de Profesor guía-->
+                                        @if(Auth::user()!=null && Auth::user()->rol=='Profesor guia' )
+                                            <div class="links">
+                                                <a href=" ">Trabajos de titulo a cargo</a>
+                                            </div>
+                                        @endif
                         </div>
                     @else
                         <!--<a href="{{ route('login') }}">Login</a>-->

@@ -18,6 +18,7 @@ class BitacoraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $bitacoras = Bitacora::orderBy('id', 'DESC')->paginate();
