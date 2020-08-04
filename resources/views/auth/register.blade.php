@@ -25,6 +25,14 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('rol') ? ' has-error' : '' }}">
+                            <label for="rut" class="col-md-4 control-label">Rut</label>
+
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT"> 
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">Correo eletrónico</label>
 
@@ -45,11 +53,9 @@
 
                             <div class="col-md-6">
                                 <select class= "form-control" name="rol" id="rol">
-                                    <option>Seleccionar</option>
-                                    <option value="Estudiante tesista">Estudiante tesista</option>
-                                    <option value="Profesor guia">Profesor guía</option>
-                                    <option value="Secretaria">Secretaria</option>
-                                    <option value="Encargado de titulacion">Encargador de titulación</option>
+                                    
+                                    <option value="Administrador">Administrador</option>
+                                   
                                 </select>
                             </div>
                         </div>
@@ -89,4 +95,73 @@
         </div>
     </div>
 </div>
+
 @endsection
+
+
+<script>
+
+    function checkRut(rut) {
+        // Despejar Puntos
+        var valor = rut.value.replace('.','');
+        // Despejar Guión
+        valor = valor.replace('-','');
+        
+        // Aislar Cuerpo y Dígito Verificador
+        cuerpo = valor.slice(0,-1);
+        dv = valor.slice(-1).toUpperCase();
+        
+        // Formatear RUN
+        rut.value = cuerpo + '-'+ dv
+        
+        // Si no cumple con el mínimo ej. (n.nnn.nnn)
+        if(cuerpo.length < 7) { 
+            rut.setCustomValidity("RUT Incompleto"); 
+            return false;
+        }
+        
+        // Calcular Dígito Verificador
+        suma = 0;
+        multiplo = 2;
+        
+        // Para cada dígito del Cuerpo
+        for(i=1;i<=cuerpo.length;i++) {
+        
+            // Obtener su Producto con el Múltiplo Correspondiente
+            index = multiplo * valor.charAt(cuerpo.length - i);
+            
+            // Sumar al Contador General
+            suma = suma + index;
+            
+            // Consolidar Múltiplo dentro del rango [2,7]
+            if(multiplo < 7){ 
+                multiplo = multiplo + 1; 
+            } 
+            else{ 
+                multiplo = 2;
+            }
+    
+        }
+        
+        // Calcular Dígito Verificador en base al Módulo 11
+        dvEsperado = 11 - (suma % 11);
+        
+        // Casos Especiales (0 y K)
+        dv = (dv == 'K')?10:dv;
+        dv = (dv == 0)?11:dv;
+        
+        // Validar que el Cuerpo coincide con su Dígito Verificador
+        
+        if(dvEsperado != dv) { 
+            rut.setCustomValidity("RUT Inválido");
+            $("#rut").attr('class', "form-control is-invalid");
+            return false; 
+        }
+        $("#rut").attr('class', "");
+        $("#rut").attr('class', "form-control");
+        
+        // Si todo sale bien, eliminar errores (decretar que es válido)
+        rut.setCustomValidity('');
+    }
+
+</script>
