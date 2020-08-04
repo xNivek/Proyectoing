@@ -91,6 +91,7 @@
                                     <!-- Vista para rol de estudiante-->
                                     @if(Auth::user()!=null && Auth::user()->rol=='Estudiante tesista' )
                                         <div class="links">
+                                            <a href=" ">Registrar avance</a>
                                             <a href=" ">Revisa tú bitacora</a>
                                         </div>
                                     @endif
