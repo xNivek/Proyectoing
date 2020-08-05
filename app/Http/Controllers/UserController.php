@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
-use Malahierba\ChileRut\ChileRut;
-use Malahierba\ChileRut\Rules\ValidChileanRut;
 
 class UserController extends Controller
 {
@@ -104,8 +102,9 @@ class UserController extends Controller
         /**insertar modificador de rut */
         $user->email=$request->input('email');
         $user->rol=$request->input('rol');
-        $user->status=$request->input('status');
-        $user->password= bcrypt ($request->input('password')); 
+        if ($request->input('password') != ""){
+            $user->password= bcrypt ($request->input('password')); 
+        }
         $user->save();
         
         
@@ -123,7 +122,18 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        if($user->status == "VISIBLE")
+        {
+            $user->status="NO VISIBLE";
+        }
+        else
+        {
+            $user->status="VISIBLE";
+        }
+        $user->save();
+
+        return redirect()->route('user.index');
     }
 
     

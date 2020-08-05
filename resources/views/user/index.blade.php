@@ -20,6 +20,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>nombre</th>
+                                    <th>rut</th>
                                     <th>Email</th>
                                     <th>Rol</th>
                                     <th>Password</th>
@@ -36,6 +37,7 @@
                                         
                                             <td>{{$user->id}}</td>
                                             <td>{{$user->name}}</td>
+                                            <td>{{$user->rut}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->rol}}</td>
                                             <td><input type="password" value="{{$user->password}}" readonly style="border:none"/></td><!-- esto es para ponerle los puntitos al password -->
