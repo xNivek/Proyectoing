@@ -87,18 +87,34 @@
                                     </div>
                                 </div>
                                 
-                                <div class="form-group">
-                                    <label for="check" class="col-md-4 control-label">¿Desea cambiar la contraseña?</label>
-                                    <label class="switch">
-                                    <input type="checkbox" id="check" onclick="changePassword()">
-                                    <span class="slider round"> </span>
-                                </div>
+                                <!--se agrego 15-07 es visibilidad cambio de estado-->
+                                <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+                                    <label for="status" class="col-md-4 control-label">Estado</label>
 
-                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}" style="display:none" id="pass">
+                                    <div class="col-md-6">
+                                        <select class= "form-control" name="status" id="status">
+                                
+                                             @if ($user->status=='VISIBLE')
+                                                <option value="VISIBLE" selected>VISIBLE</option>
+                                            @else
+                                                <option value="VISIBLE">VISIBLE</option>
+                                            @endif
+
+                                            @if ($user->status=='NO VISIBLE')
+                                                <option value="NO VISIBLE" selected>NO VISIBLE</option>
+                                            @else
+                                                <option value="NO VISIBLE">NO VISIBLE</option>
+                                            @endif
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--se agrego 15-07 es visibilidad cambio de estado--> 
+                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                     <label for="password" class="col-md-4 control-label">Contraseña</label>
 
                                     <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control" name="password">
+                                        <input id="password" type="password" class="form-control" name="password" required>
 
                                         @if ($errors->has('password'))
                                             <span class="help-block">
@@ -108,11 +124,11 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group" style="display:none" id="passConfirm">
+                                <div class="form-group">
                                     <label for="password-confirm" class="col-md-4 control-label">Confirmar contraseña</label>
 
                                     <div class="col-md-6">
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                                     </div>
                                 </div>
 
@@ -132,30 +148,6 @@
                 </div>
             </div>
         </div>
-        <script>
-            function changePassword()
-            {
-                var check = document.getElementById('check');
-                var pass=document.getElementById('pass');
-                var pass2=document.getElementById('passConfirm');
-                var pass3=document.getElementById('password');
-                var pass4=document.getElementById('password-confirm');
-
-                if (check.checked == true){
-                    pass.style.display = "block";
-                    pass2.style.display = "block";
-                    pass3.required=true;
-                    pass4.required=true;
-                } else {
-                    pass.style.display = "none";
-                    pass2.style.display = "none";
-                    pass3.required=false;
-                    pass4.required=false;
-                }
-            }
-
-        
-        </script>
     @else
     <!--fin de la validacion-->
         <div> 
