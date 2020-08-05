@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 route::get("/admin", function(){
-    return view('adminregister');
+    return view('auth.register');
 });
 
 
@@ -24,6 +24,8 @@ Route::resource('bitacora', 'BitacoraController');
 Route::resource('avance', 'AvanceController');
 Route::resource('user', 'UserController');
 
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

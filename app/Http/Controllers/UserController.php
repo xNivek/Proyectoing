@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Malahierba\ChileRut\ChileRut;
+use Malahierba\ChileRut\Rules\ValidChileanRut;
 
 class UserController extends Controller
 {
@@ -48,6 +50,7 @@ class UserController extends Controller
         
         $this->validate($request,[
             'name' => 'required',
+            'rut' => 'required',
             'email' => 'required',
             'rol' => 'required',
             'password' => 'required'
@@ -55,6 +58,7 @@ class UserController extends Controller
 
         $user=new User;
         $user->name=$request->input('name');
+        $user->rut=$request->input('rut');
         $user->email=$request->input('email');
         $user->rol=$request->input('rol');
         $user->password= bcrypt ($request->input('password')); 
@@ -97,6 +101,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->name=$request->input('name');
+        /**insertar modificador de rut */
         $user->email=$request->input('email');
         $user->rol=$request->input('rol');
         $user->status=$request->input('status');
