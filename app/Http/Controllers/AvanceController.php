@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Avance;
+use App\Bitacora;
 
 class AvanceController extends Controller
 {
@@ -12,19 +13,23 @@ class AvanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
-    }
+        $avances = Avance::where('bitacora_id', $id)->get();
+        $bitacora_id=$id;
 
+        return view('avance.index', compact('avances', 'bitacora_id'));
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $bitacora_id = $id;
+        
+        return view('avance.create', compact('bitacora_id'));
     }
 
     /**
@@ -35,7 +40,8 @@ class AvanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $avance = Avance::create($request->all());
+        return redirect()->route('bitacora.index');
     }
 
     /**
@@ -46,7 +52,8 @@ class AvanceController extends Controller
      */
     public function show($id)
     {
-        //
+        $avance = Avance::find($id);
+        return view('avance.show',compact('avance'));
     }
 
     /**
@@ -57,7 +64,8 @@ class AvanceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $avance= Avance::find($id);
+        return  view('avance.edit',compact('avance'));
     }
 
     /**
@@ -69,7 +77,13 @@ class AvanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $avance = Avance::find($id);
+        $avance->nombre=$request->nombre;
+        $avance->texto=$request->texto;
+        $avance->save();
+
+        //$avance->fill($request->all())->save();
+        return redirect()->route('bitacora.index');
     }
 
     /**
@@ -80,6 +94,7 @@ class AvanceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        avance::find($id)->delete();
+        return back();
     }
 }

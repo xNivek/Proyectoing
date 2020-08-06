@@ -34,13 +34,12 @@
                                     <td>{{App\User::find($bitacora->user_id)->name}}</td>
                                     <td >
                                         <a href="{{ route('bitacora.show', $bitacora->id) }}" class="btn btn-sm btn-primary">Ver</a>
-                                        <a href="{{ route('bitacora.edit', $bitacora->id) }}" class="btn btn-sm btn-primary">Editar</a>
-                                        {!!Form::open(['route'=>['bitacora.destroy',$bitacora->id],'method'=>'DELETE'])!!}
-                                            <button class="btn btn-sm btn-danger">
-                                                Eliminar
-                                            </button>
-                                        {!!Form::close()!!}
+                                        <a href="{{ route('indice', $bitacora->id) }}" class="btn btn-sm btn-primary">Avance</a>
 
+                                        
+                                        <a href="{{ route('bitacora.edit', $bitacora->id) }}" class="btn btn-sm btn-primary">Editar</a>
+                                        
+                                
                                     </td>
                                     <td>
                                         

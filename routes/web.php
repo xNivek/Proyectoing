@@ -15,12 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-route::get("/admin", function(){
+Route::get("/admin", function(){
     return view('auth.register');
 });
 
 
 Route::resource('bitacora', 'BitacoraController');
+Route::get('/indice/{id}', 'AvanceController@index')->name('indice');
+Route::get('/crear/{id}', 'AvanceController@create')->name('crear');
+
 Route::resource('avance', 'AvanceController');
 Route::resource('user', 'UserController');
 
