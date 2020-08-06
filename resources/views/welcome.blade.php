@@ -65,52 +65,56 @@
         </style>
     </head>
     <body>
-    
-        <div class="flex-center position-ref full-height">
+        <header style="background-color: #1D5E6B">
             @if (Route::has('login'))
-                <div class="content">
-                    @auth
-                        <a href="{{ url('/home') }}" class="top-right links">Home</a>
-                        <div class="title m-b-md">
-                            Bitacora web
-                        </div>
-                        <!-- Vista para rol administrador-->
-                        @if(Auth::user()!=null && Auth::user()->rol=='Administrador' )
-                            <div class="links">
-                                
-                                <a href="http://127.0.0.1:8000/user">Usuarios</a>
-                            
+                    <div class="content">
+                        @auth
+                            <a href="{{ url('/home') }}" class="top-right links">Home</a>
+                            <div class="title m-b-md" style="color:#f4f4f4">
+                                Bitacora web
                             </div>
-                        @endif
-                                <!-- Vista para rol secretaria-->
-                                @if(Auth::user()!=null && (Auth::user()->rol=='Secretaria' || Auth::user()->rol=='Encargado de titulacion'))
-                                    <div class="links">
-                                        <a href="http://127.0.0.1:8000/bitacora">Bitacora</a>
-                                    </div>
-                                @endif
-                                    <!-- Vista para rol de estudiante-->
-                                    @if(Auth::user()!=null && Auth::user()->rol=='Estudiante tesista' )
+                            <!-- Vista para rol administrador-->
+                            @if(Auth::user()!=null && Auth::user()->rol=='Administrador' )
+                                <div class="links">
+                                    
+                                    <a href="http://127.0.0.1:8000/user">Usuarios</a>
+                                
+                                </div>
+                            @endif
+                                    <!-- Vista para rol secretaria-->
+                                    @if(Auth::user()!=null && (Auth::user()->rol=='Secretaria' || Auth::user()->rol=='Encargado de titulacion'))
                                         <div class="links">
-                                            <a href=" ">Registrar avance</a>
-                                            <a href=" ">Revisa tú bitacora</a>
+                                            <a href="http://127.0.0.1:8000/bitacora">Bitacora</a>
                                         </div>
                                     @endif
-                                        <!-- Vista para rol de Profesor guía-->
-                                        @if(Auth::user()!=null && Auth::user()->rol=='Profesor guia' )
+                                        <!-- Vista para rol de estudiante-->
+                                        @if(Auth::user()!=null && Auth::user()->rol=='Estudiante tesista' )
                                             <div class="links">
-                                                <a href=" ">Trabajos de titulo a cargo</a>
+                                                <a href=" ">Registrar avance</a>
+                                                <a href=" ">Revisa tú bitacora</a>
                                             </div>
                                         @endif
-                        </div>
-                    @else
-                        <!--<a href="{{ route('login') }}">Login</a>-->
-                        <a href="{{ route('login') }}" class="top-right links">Iniciar sesión</a>
-                        <div class="title m-b-md">
-                            Bitacora web
-                        </div>
-                    @endauth
-                </div>
-            @endif
+                                            <!-- Vista para rol de Profesor guía-->
+                                            @if(Auth::user()!=null && Auth::user()->rol=='Profesor guia' )
+                                                <div class="links">
+                                                    <a href=" ">Trabajos de titulo a cargo</a>
+                                                </div>
+                                            @endif
+                            </div>
+                        @else
+                            <!--<a href="{{ route('login') }}">Login</a>-->
+                            <button class="top-right btn btn-primary btn-lg" style="background-color:#F08428; height:35px; width:100px; margin-top:11px"><a href="{{ route('login') }}" class="links" style="color:#f4f4f4" >Iniciar sesión</a></button>
+                            <div class="title m-b-md" style="color:#f4f4f4">
+                                Bitacora web
+                            </div>
+                        @endauth
+                    </div>
+                @endif
+        
+        </header>
+
+        <div class="flex-center position-ref full-height">
+            
 
            
         </div>
