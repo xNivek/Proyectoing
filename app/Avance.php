@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Avance extends Model
 {
     protected $fillable = [
-        'nombre', 'texto', 'bitacora_id', 'user_id','created_at','updated_at'
+        'nombre', 'texto', 'ruta', 'bitacora_id', 'user_id','created_at','updated_at'
     ];
 }

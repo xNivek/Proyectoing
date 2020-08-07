@@ -17,6 +17,7 @@ class CreateAvancesTable extends Migration
             $table->increments('id');
             $table->string('nombre', 255);
             $table->string('texto', 255);
+            $table->string('ruta',255)->nullable()->default(NULL);
             $table->integer('bitacora_id')->unsigned();
             $table->integer('user_id')->unsigned();
 
