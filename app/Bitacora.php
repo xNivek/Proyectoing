@@ -7,10 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Bitacora extends Model
 {
     protected $fillable = [
-        'nombre', 'profesor1', 'rutprofesor1', 'profesor2', 'rutprofesor2', 'user_id',
-        'estudiante1', 'rutestudiante1', 'carreraestudiante1',
-        'estudiante2', 'rutestudiante2', 'carreraestudiante2',
-        'estudiante3', 'rutestudiante3', 'carreraestudiante3',
-        'estudiante4', 'rutestudiante4', 'carreraestudiante4',
+        'nombre', 
+        'profesor1_id',
+        'profesor2_id',
+        'tesista1_id',
+        'tesista2_id',
+        'tesista3_id',
+        'tesista4_id',
+        'user_id',
     ];
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
+
 }

@@ -16,25 +16,23 @@ class CreateBitacorasTable extends Migration
         Schema::create('bitacoras', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre', 255);
-            $table->string('profesor1', 255);
-            $table->string('rutprofesor1', 255);
-            $table->string('profesor2', 255)->nullable();
-            $table->string('rutprofesor2', 255)->nullable();
-            $table->string('estudiante1', 255);
-            $table->string('rutestudiante1', 255);
-            $table->string('carreraestudiante1', 255);
-            $table->string('estudiante2', 255)->nullable();
-            $table->string('rutestudiante2', 255)->nullable();
-            $table->string('carreraestudiante2', 255)->nullable();
-            $table->string('estudiante3', 255)->nullable();
-            $table->string('rutestudiante3', 255)->nullable();
-            $table->string('carreraestudiante3', 255)->nullable();
-            $table->string('estudiante4', 255)->nullable();
-            $table->string('rutestudiante4', 255)->nullable();
-            $table->string('carreraestudiante4', 255)->nullable();
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('profesor1_id')->unsigned();
+            $table->integer('profesor2_id')->unsigned()->nullable();
+            $table->integer('tesista1_id')->unsigned();
+            $table->integer('tesista2_id')->unsigned()->nullable();
+            $table->integer('tesista3_id')->unsigned()->nullable();
+            $table->integer('tesista4_id')->unsigned()->nullable();
 
-            $table->foreign('user_id')->references('id')->on('users');    
+            $table->integer('user_id')->unsigned();
+
+            $table->foreign('profesor1_id')->references('id')->on('users');
+            $table->foreign('profesor2_id')->references('id')->on('users');    
+            $table->foreign('tesista1_id')->references('id')->on('users');    
+            $table->foreign('tesista2_id')->references('id')->on('users');    
+            $table->foreign('tesista3_id')->references('id')->on('users');    
+            $table->foreign('tesista4_id')->references('id')->on('users');     
+
+            $table->foreign('user_id')->references('id')->on('users');  
             
             $table->timestamps();
         });
