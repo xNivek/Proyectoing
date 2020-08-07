@@ -49,6 +49,7 @@ class UserController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'rut' => 'required',
+            'carrera' => 'required',
             'email' => 'required',
             'rol' => 'required',
             'password' => 'required'
@@ -57,6 +58,7 @@ class UserController extends Controller
         $user=new User;
         $user->name=$request->input('name');
         $user->rut=$request->input('rut');
+        $user->carrera=$request->input('carrera');
         $user->email=$request->input('email');
         $user->rol=$request->input('rol');
         $user->password= bcrypt ($request->input('password')); 

@@ -6,7 +6,7 @@
     @if(Auth::user()!=null && Auth::user()->rol=='Administrador' )
         <div class="container">
             <div class="row">
-                <div class="col-md-12 col-md-offset-2">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             Lista de usuarios
@@ -21,6 +21,7 @@
                                     <th>ID</th>
                                     <th>nombre</th>
                                     <th>rut</th>
+                                    <th>carrera</th>
                                     <th>Email</th>
                                     <th>Rol</th>
                                     <th>Password</th>
@@ -38,6 +39,7 @@
                                             <td>{{$user->id}}</td>
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->rut}}</td>
+                                            <td>{{$user->carrera}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->rol}}</td>
                                             <td><input type="password" value="{{$user->password}}" readonly style="border:none"/></td><!-- esto es para ponerle los puntitos al password -->

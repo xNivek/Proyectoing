@@ -35,6 +35,21 @@
                                     </div>
                                 </div>
 
+                                <!-- Seleccionar carrera de usuario-->
+                                <div class="form-group{{ $errors->has('carrera') ? ' has-error' : '' }}">
+                                    <label for="rol" class="col-md-4 control-label">Carrera</label>
+
+                                    <div class="col-md-6">
+                                        <select class= "form-control" name="carrera" id="carrera">
+                                            
+                                        <option value="ICCI">Ingeniería Civil en Computación e Informática</option>
+                                        <option value="IenCI">Ingeniería en Computación e informática</option>
+                                        <option value="Otra">Otra</option>
+                                        
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                     <label for="email" class="col-md-4 control-label">Correo eletrónico</label>
 
