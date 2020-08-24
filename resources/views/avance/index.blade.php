@@ -38,7 +38,12 @@
                                         <td >
                                             <a href="{{ route('avance.show', $avance->id) }}" class="btn btn-sm btn-primary">Ver</a>
                                             <a href="{{ route('avance.edit', $avance->id) }}" class="btn btn-sm btn-primary">Editar</a>
-                                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal"  onclick="saveNameFile('{{$avance->nombre}}_bitacora{{$avance->bitacora_id}}_avance{{$avance->id}}')">Subir Archivo</button>
+                                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal"  onclick="saveNameFile('{{$avance->nombre}}_bitacora_{{$avance->bitacora_id}}_avance_{{$avance->id}}')">Subir Archivo</button>
+                                            @if ($avance->ruta != NULL)
+
+                                                <a href="{{ $avance->ruta }}" download class="btn btn-sm btn-primary">Descargar</a>
+
+                                            @endif
                                             {!!Form::open(['route'=>['avance.destroy',$avance->id],'method'=>'DELETE'])!!}
                                                 <button class="btn btn-sm btn-danger">
                                                     Eliminar
