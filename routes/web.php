@@ -19,7 +19,10 @@ Route::get("/admin", function(){
     return view('auth.register');
 });
 
-
+Route::get('indexEstudiante', 'BitacoraController@indexEstudiante');
+Route::get('indexEstudiante', 'BitacoraController@indexEstudiante')->name('bitacora.indexEstudiante');
+Route::get('indexProfesor', 'BitacoraController@indexProfesor');
+Route::get('indexProfesor', 'BitacoraController@indexProfesor')->name('bitacora.indexProfesor');
 Route::resource('bitacora', 'BitacoraController');
 Route::get('/indice/{id}', 'AvanceController@index')->name('indice');
 Route::get('/crear/{id}', 'AvanceController@create')->name('crear');

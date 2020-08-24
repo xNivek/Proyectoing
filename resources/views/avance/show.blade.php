@@ -19,7 +19,7 @@
                 </div>
 
             </div>
-                <a href="{{ route('bitacora.index') }}"class= "btn btn-primary">Volver</a>
+                <a href="{{ route('bitacora.indexEstudiante') }}"class= "btn btn-primary">Volver</a>
         </div>
     </div>
 </div>

@@ -145,4 +145,18 @@ class BitacoraController extends Controller
         $bitacora = Bitacora::find($id)->delete();
         return back()->with('info','Eliminado correctamente');
     }
+
+    //metodos propios
+
+    public function indexEstudiante()
+    {
+        $bitacoras = Bitacora::orderBy('id', 'DESC')->paginate();
+        return view('bitacora.indexEstudiante', compact('bitacoras'));
+    }
+
+    public function indexProfesor()
+    {
+        $bitacoras = Bitacora::orderBy('id', 'DESC')->paginate();
+        return view('bitacora.indexProfesor', compact('bitacoras'));
+    }
 }

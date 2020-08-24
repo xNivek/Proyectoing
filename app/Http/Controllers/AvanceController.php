@@ -41,7 +41,7 @@ class AvanceController extends Controller
     public function store(Request $request)
     {
         $avance = Avance::create($request->all());
-        return redirect()->route('bitacora.index');
+        return redirect()->route('bitacora.indexEstudiante');
     }
 
     /**

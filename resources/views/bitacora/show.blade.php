@@ -55,7 +55,13 @@
                 </div>
 
             </div>
-                <a href="{{ route('bitacora.index') }}"class= "btn btn-primary">Volver</a>
+                @if(Auth::user()->id==$bitacora->tesista1_id || Auth::user()->id==$bitacora->tesista2_id || Auth::user()->id==$bitacora->tesista3_id || Auth::user()->id==$bitacora->tesista4_id)
+                    <a href="{{ route('bitacora.indexEstudiante') }}"class= "btn btn-primary">Volver</a>
+                    @elseif(Auth::user()->id==$bitacora->profesor1_id || Auth::user()->id==$bitacora->profesor2_id)
+                        <a href="{{ route('bitacora.indexProfesor') }}"class= "btn btn-primary">Volver</a>
+                    @else
+                        <a href="{{ route('bitacora.index') }}"class= "btn btn-primary">Volver</a>
+                @endif
         </div>
     </div>
 </div>
