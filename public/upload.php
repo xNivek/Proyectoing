@@ -11,11 +11,17 @@ if(isset($_POST['request'])){
 if($request == 1){ 
   $target_file = $target_dir . basename($_FILES["file"]["name"]);
   $msg = ""; 
+  //list($nombre, $bitacora, $IDBitacora, $avance, $IDAvance, $extension) = 
+  $help=explode('_', $_FILES["file"]["name"], 5);
+  $help2=explode('.', $help[4], 2);
+  
+  $avance = Avance::find((int)$help2[0]);
+  $avance->ruta="http://localHost:8000/Archivos/".$_FILES["file"]["name"];
   if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_dir.$_FILES['file']['name'])) {
     $msg = "Successfully uploaded";
-    list($nombre, $bitacora, $IDBitacora, $avance, $IDAvance, $extension) = split('[_.]', $_FILES["file"]["name"]);
-    $avance = Avance::find($IDAvance);
-    $avance->ruta="htt://localHost:8000/Archivos/".$_FILES["file"]["name"];
+    
+    $avance = Avance::find((int)$help2[0]);
+    $avance->ruta="http://localHost:8000/Archivos/".$_FILES["file"]["name"];
     $avance->save(); 
   }else{    
     $msg = "Error while uploading"; 
