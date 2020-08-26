@@ -38,7 +38,7 @@
                                         <td >
                                             <a href="{{ route('avance.show', $avance->id) }}" class="btn btn-sm btn-primary">Ver</a>
                                             <a href="{{ route('avance.edit', $avance->id) }}" class="btn btn-sm btn-primary">Editar</a>
-                                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal"  onclick="saveNameFile('{{$avance->nombre}}_bitacora_{{$avance->bitacora_id}}_avance_{{$avance->id}}')">Subir Archivo</button>
+                                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal"  onclick="saveNameFile('{{$avance->nombre}}_bitacora_{{$avance->bitacora_id}}_avance_{{$avance->id}}','{{$avance->id}}')">Subir Archivo</button>
                                             @if ($avance->ruta != NULL)
 
                                                 <a href="{{ $avance->ruta }}" download class="btn btn-sm btn-primary">Descargar</a>
@@ -49,7 +49,15 @@
                                                     Eliminar
                                                 </button>
                                             {!!Form::close()!!}
+                                            
+                                            <input id="id" type="hidden" class="form-control" name="id" value="" >
+                                            {!! Form::model($avance,['route' => ['avance.update', $avance->id],'method'=>'PUT'])!!}
+                                                @include('avance.partials.form')
 
+                                                {{ Form::hidden('user_id', auth()->user()->id)}}
+                                                <input id="ruta_{{$avance->id}}" type="hidden" class="form-control" name="ruta" value="" >
+                                                <button id="btn_{{$avance->id}}" style="display:none" class="btn btn-sm btn-primary" type="submit" hidden></button>
+                                            {!!Form::close()!!}
                                         </td>
                                         <td>
                                             
@@ -59,7 +67,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        
                     </div>
                 </div>
             </div>
@@ -104,6 +111,9 @@
                 var pos = extension.length-1;
                 var name = document.getElementById('idTxt').value+'.';
                 var myFileName = name+extension[pos];
+                var idAvance = document.getElementById('id').value;
+                document.getElementById('ruta_'+idAvance).value='http://localhost:8000/Archivos/'+myFileName;
+                document.getElementById('btn_'+idAvance).click();
                 return myFileName;
             },
             removedfile: function(file) {
@@ -122,9 +132,10 @@
             }
         };
         
-        function saveNameFile(fileName)
+        function saveNameFile(fileName,id)
         {
             document.getElementById('idTxt').value = fileName;
+            document.getElementById('id').value = id;
         }
 
         function cleanFileUpload() {

@@ -78,12 +78,22 @@ class AvanceController extends Controller
     public function update(Request $request, $id)
     {
         $avance = Avance::find($id);
-        $avance->nombre=$request->nombre;
-        $avance->texto=$request->texto;
-        $avance->save();
+        
+        if($request->ruta)
+        {
+            $avance->ruta=$request->ruta;
+            $avance->save();
+            return redirect()->route('bitacora.indexEstudiante')->with('message', 'State saved correctly!!!');
+        }else
+        { 
+            $avance->nombre=$request->nombre;
+            $avance->texto=$request->texto;
+            $avance->save();
+            
+            return redirect()->route('bitacora.indexEstudiante')->with('message', 'State saved correctly!!!');
+        }
 
         //$avance->fill($request->all())->save();
-        return redirect()->route('bitacora.index');
     }
 
     /**
