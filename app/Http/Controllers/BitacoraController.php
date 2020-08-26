@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
 use Illuminate\Http\Request;
 use App\Bitacora;
 use App\User;
@@ -84,6 +85,7 @@ class BitacoraController extends Controller
                     'tesista4_id' => $tesista4,
                     'user_id' => $user_id,
                 ]);
+                //$this->sendEmailReminder($bitacora);
                 return redirect()->route('bitacora.index');
             }else{
                 return back()->with('error', 'Ha ingresado dos profesores iguales en los campos');
@@ -158,5 +160,22 @@ class BitacoraController extends Controller
     {
         $bitacoras = Bitacora::orderBy('id', 'DESC')->paginate();
         return view('bitacora.indexProfesor', compact('bitacoras'));
+    }
+
+    private function sendEmailReminder($bitacora)
+    {
+        // Please specify your Mail Server - Example: mail.yourdomain.com.
+        ini_set("SMTP","tsl://smtp.gmail.com");
+
+        // Please specify an SMTP Number 25 and 8889 are valid SMTP Ports.
+        ini_set("smtp_port","587");
+        $para      = 'jp.matepreucn@gmail.com';
+        $titulo    = 'El título';
+        $mensaje   = 'Hola';
+        $cabeceras = 'From: lucarionot@gmail.com' . "\r\n" .
+            'Reply-To: lucarionot@gmail.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        mail($para, $titulo, $mensaje, $cabeceras);
     }
 }
