@@ -32,7 +32,8 @@
                                             <td>{{App\User::find($bitacora->user_id)->name}}</td>
                                             <td >
                                                 <a href="{{ route('bitacora.show', $bitacora->id) }}" class="btn btn-sm btn-primary">Ver</a>
-                                                <a href="{{ route('indice', $bitacora->id) }}" class="btn btn-sm btn-primary">Avance</a>
+                                                <!-- este avance tiene que ser una ruta a una vista dedicada solo al profesor-->
+                                                <!--<a href="{{ route('indice', $bitacora->id) }}" class="btn btn-sm btn-primary">Avance</a>-->
                                             </td>  
                                         </tr>
                                     @endif 

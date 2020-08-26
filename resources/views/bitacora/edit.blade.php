@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2">
             <div class="card">
 
                 <div class="card-header">
@@ -19,55 +19,92 @@
                     {{ Form::hidden('user_id', auth()->user()->id)}}
 
                     <div class="form-group">
-                        {{  Form::label('parametro', 'Ingrese nombre del trabajo de titulación')    }}
+                        {{  Form::label('parametro1', 'Ingrese nombre del trabajo de titulación')    }}
                         {{  Form::text('nombre', null, ['class' => 'form-control'])    }}
                     </div>
 
                     <div class="form-group">
-                        {{  Form::label('parametro1', 'Estudiante a cargo')    }}
-                        {{  Form::text('estudiante1', null, ['class' => 'form-control'])    }}
-                        {{  Form::text('rutestudiante1', null, ['class' => 'form-control'])    }}
-                        {{  Form::text('carreraestudiante1', null, ['class' => 'form-control'])    }}
+                        <div class="card-header">
+                            Registre profesor guía
+                        </div> 
+
+                        <select class="form-control" name="profesor1_id">
+                            @foreach($profesores as $profesor)
+                                <option value="{{$profesor->id}}">{{$profesor->name}}</option>
+                            @endforeach
+                        </select>
+
+
+                    </div>
+                    
+
+                    <div class="form-group">
+                        <div class="card-header">
+                            Registre profesor guía
+                        </div> 
+
+                        <select class="form-control" name="profesor2_id">
+                            <option value="100">Seleccione otro profesor guia si tiene</option>
+                            @foreach($profesores as $profesor)
+                                <option value="{{$profesor->id}}">{{$profesor->name}}</option>
+                            @endforeach
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="card-header">
+                            Ingrese estudiante tesista
+                        </div> 
+
+                        <select class="form-control" name="tesista1_id">
+                            @foreach($tesistas as $tesista)
+                                <option value="{{$tesista->id}}">{{$tesista->name}}</option>
+                            @endforeach
+                        </select>
+
                     </div>
 
                     <div class="form-group">
-                        {{  Form::label('parametro2', 'Dejar en blanco para eliminar estudiante')    }}
-                        {{  Form::text('estudiante2', null, ['class' => 'form-control'])    }}
-                        {{  Form::text('rutestudiante2', null, ['class' => 'form-control'])    }}
-                        {{  Form::text('carreraestudiante2', null, ['class' => 'form-control'])    }}
+                        <div class="card-header">
+                            Ingrese estudiante tesista
+                        </div> 
+                        <select class="form-control" name="tesista2_id">
+                            <option value="101">Seleccione otro tesista si tiene</option>
+                            @foreach($tesistas as $tesista)
+                                <option value="{{$tesista->id}}">{{$tesista->name}}</option>
+                            @endforeach
+                        </select>
+                    
                     </div>
 
                     <div class="form-group">
-                        {{  Form::label('parametro3', 'Dejar en blanco para eliminar estudiante')    }}
-                        {{  Form::text('estudiante3', null, ['class' => 'form-control'])    }}
-                        {{  Form::text('rutestudiante3', null, ['class' => 'form-control'])    }}
-                        {{  Form::text('carreraestudiante3', null, ['class' => 'form-control'])    }}
-                    </div>
-                    <div class="form-group">
-                        {{  Form::label('parametro4', 'Dejar en blanco para eliminar estudiante')    }}
-                        {{  Form::text('estudiante4', null, ['class' => 'form-control'])    }}
-                        {{  Form::text('rutestudiante4', null, ['class' => 'form-control'])    }}
-                        {{  Form::text('carreraestudiante4', null, ['class' => 'form-control'])    }}
+                        <div class="card-header">
+                            Ingrese estudiante tesista
+                        </div> 
+                        <select class="form-control" name="tesista3_id">
+                            <option value="102">Seleccione otro tesista si tiene</option>
+                            @foreach($tesistas as $tesista)
+                                <option value="{{$tesista->id}}">{{$tesista->name}}</option>
+                            @endforeach
+                        </select>
+
                     </div>
 
                     <div class="form-group">
-                        {{  Form::label('parametro5', 'Ingrese nombre del profesor guía 1')    }}
-                        {{  Form::text('profesor1', null, ['class' => 'form-control'])    }}
-                    </div>
+                        <div class="card-header">
+                            Ingrese estudiante tesista
+                        </div> 
+                        
+                        <select class="form-control" name="tesista4_id">
+                            <option value="103">Seleccione otro tesista si tiene</option>
+                            @foreach($tesistas as $tesista)
+                                <option value="{{$tesista->id}}">{{$tesista->name}}</option>
+                            @endforeach
+                        </select>
+                        
 
-                    <div class="form-group">
-                        {{  Form::label('parametro6', 'Ingrese el rut del profesor guía 1')    }}
-                        {{  Form::text('rutprofesor1', null, ['class' => 'form-control'])    }}
-                    </div>
-
-                    <div class="form-group">
-                        {{  Form::label('parametro7', 'Ingrese nombre del profesor guía 2')    }}
-                        {{  Form::text('profesor2', null, ['class' => 'form-control'])    }}
-                    </div>
-
-                    <div class="form-group">
-                        {{  Form::label('parametro8', 'Ingrese el rut del profesor guía 2')    }}
-                        {{  Form::text('rutprofesor2', null, ['class' => 'form-control'])    }}
                     </div>
 
                   

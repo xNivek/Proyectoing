@@ -116,8 +116,11 @@ class BitacoraController extends Controller
      */
     public function edit($id)
     {
+        $tesistas = User::where([['rol', '=', 'Estudiante tesista'],['status', '=', 'VISIBLE']])->get();
+        $profesores = User::where([['rol', '=', 'Profesor guia'],['status', '=', 'VISIBLE']])->get();
         $bitacora = Bitacora::find($id);
-        return view('bitacora.edit', compact('bitacora'));
+        
+        return view('bitacora.edit', compact('tesistas', 'profesores','bitacora'));
     }
 
     /**
@@ -128,12 +131,57 @@ class BitacoraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $bitacora= Bitacora::find($id);
-        $bitacora->fill($request->all())->save();
+    {   
+
+        $profesor1= $request->input('profesor1_id');
+        $profesor2= $request->input('profesor2_id');
+        $tesista1 = $request->input('tesista1_id');
+        $tesista2 = $request->input('tesista2_id');
+        $tesista3 = $request->input('tesista3_id');
+        $tesista4 = $request->input('tesista4_id');
+        $bitacora = Bitacora::find($id);
+
+        if($tesista1 != $tesista2 and $tesista1 != $tesista3 and $tesista1 != $tesista4 and $tesista2 != $tesista3 and $tesista2 != $tesista4 and $tesista3 != $tesista4){
+            if($profesor1 != $profesor2){
+
         
-        return redirect()->route('bitacora.edit',$bitacora->id)
-            ->with('info','Titulo Actualizado con exito');
+                $bitacora->nombre=$request->input('nombre');
+                $bitacora->profesor1_id=$request->input('profesor1_id');
+                $bitacora->tesista1_id=$request->input('tesista1_id');
+                if($bitacora->profesor2_id=$request->input('profesor2_id')==100){
+                    $bitacora->profesor2_id=null;
+                }else{
+                    $bitacora->profesor2_id=$request->input('profesor2_id');
+                }
+                
+                if($bitacora->tesista2_id=$request->input('tesista2_id')==101){
+                    $bitacora->tesista2_id=null;
+                }else{
+                    $bitacora->tesista2_id=$request->input('tesista2_id');
+                }
+
+                if($bitacora->tesista3_id=$request->input('tesista3_id')==102){
+                    $bitacora->tesista3_id=null;
+                }else{
+                    $bitacora->tesista3_id=$request->input('tesista3_id');
+                }
+
+                if($bitacora->tesista4_id=$request->input('tesista4_id')==103){
+                    $bitacora->tesista4_id=null;
+                }else{
+                    $bitacora->tesista4_id=$request->input('tesista4_id');
+                }
+
+                $bitacora->save();
+                return redirect()->route('bitacora.index')->with('info', 'Actualizado correctamente');
+
+            }else{
+                return back()->with('error', 'Ha ingresado dos profesores iguales en los campos');
+            }
+        }else{
+            return back()->with('error', 'Ha ingresado el mismo estudiante en los campos');
+        }
+         
     }
 
     /**
