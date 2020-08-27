@@ -10,7 +10,7 @@
                         <div class="card-header">
                             Lista de Comentarios
                             
-                            <a href="" style="float:right" class="btn bn-sm btn-primary">Crear</a>
+                            <a href="{{route('com',$avance_id)}}" style="float:right" class="btn bn-sm btn-primary">Crear</a>
                         </div>
                     </div>
 
@@ -39,7 +39,7 @@
                                         <td >
                                             <a href="{{ route('comentario.show', $comentario->id) }}" class="btn btn-sm btn-primary">Ver</a>
                                             <a href="{{ route('comentario.edit', $comentario->id) }}" class="btn btn-sm btn-primary">Editar</a>
-                                            <a href="{{route('comentario.create',$avance->id)}}" class="btn btn-sm btn-primary">Comentar</a>
+                                            
                                             <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal"  onclick="saveNameFile('{{$comentario->nombre}}_bitacora_{{$comentario->bitacora_id}}_comentario_{{$comentario->id}}','{{$comentario->id}}')">Subir Archivo</button>
                                             @if ($comentario->ruta != NULL)
 

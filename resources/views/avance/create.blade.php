@@ -17,7 +17,7 @@
                 {!! Form::open(['route' => ['avance.store']])!!}
 
                     {{ Form::hidden('user_id', auth()->user()->id)}}
-                    {{ Form::hidden('bita_id', $bitacora_id)}}
+                    {{ Form::hidden('bitacora_id', $bitacora_id)}}
                     
 
                     <div class="form-group">

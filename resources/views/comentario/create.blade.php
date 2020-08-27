@@ -17,7 +17,7 @@
                 {!! Form::open(['route' => ['comentario.store']])!!}
 
                     {{ Form::hidden('user_id', auth()->user()->id)}}
-                    {{ Form::hidden('avance_id', $avance->id)}}
+                    {{ Form::hidden('avance_id', $avance_id)}}
                     
 
                     <div class="form-group">
@@ -26,6 +26,7 @@
                     </div>
 
                     <div class="form-group">
+                        
                         {{  Form::label('parametro2', 'descripción del Comentario')    }}
                         {{  Form::text('texto', null, ['class' => 'form-control'])    }}
                     </div>
