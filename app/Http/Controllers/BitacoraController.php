@@ -203,10 +203,10 @@ class BitacoraController extends Controller
         }
         $bitacora->save();
 
-        //return redirect()->route('bitacora.index')->with('info','Bitacora Finalizada por no continuidad');
-        return back();
+        return redirect()->route('bitacora.index')->with('info','Bitacora Finalizada por no continuidad');
+        
     }
-    public function combio($id)
+    public function cambio($id)
     {
         $bitacora = Bitacora::find($id);
         if($bitacora->status == "En Desarollo")
@@ -219,8 +219,8 @@ class BitacoraController extends Controller
         }
         $bitacora->save();
 
-        //return redirect()->route('bitacora.index')->with('info','Bitacora Finalizada por aprobacion');
-        return back();
+        return redirect()->route('bitacora.index')->with('info','Bitacora Finalizada por aprobacion');
+        
     }
 
 

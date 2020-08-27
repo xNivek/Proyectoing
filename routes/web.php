@@ -30,6 +30,8 @@ Route::get('/indexProfesor/{id}','AvanceController@indexProfesor')->name('indexP
 Route::get('/index/{id}','ComentarioController@index');
 Route::get('/index/{id}','ComentarioController@index')->name('indexComentario');
 
+Route::get('cambio','BitacoraController@cambio');
+Route::get('cambio','BitacoraController@cambio')->name('cambio');
 
 
 
