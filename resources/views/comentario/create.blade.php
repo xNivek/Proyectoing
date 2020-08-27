@@ -9,30 +9,30 @@
             <div class="card">
 
                 <div class="card-header">
-                    CREAR NUEVO AVANCE
+                    CREAR NUEVO COMENTARIO
                 </div>
 
                 <div class="card-body">
                 
-                {!! Form::open(['route' => ['avance.store']])!!}
+                {!! Form::open(['route' => ['comentario.store']])!!}
 
                     {{ Form::hidden('user_id', auth()->user()->id)}}
-                    {{ Form::hidden('bita_id', $bitacora_id)}}
+                    {{ Form::hidden('avance_id', $avance->id)}}
                     
 
                     <div class="form-group">
-                        {{  Form::label('parametro1', 'nombre del avance')    }}
+                        {{  Form::label('parametro1', 'nombre del Comentario')    }}
                         {{  Form::text('nombre', null, ['class' => 'form-control'])    }}
                     </div>
 
                     <div class="form-group">
-                        {{  Form::label('parametro2', 'descripción del avance')    }}
+                        {{  Form::label('parametro2', 'descripción del Comentario')    }}
                         {{  Form::text('texto', null, ['class' => 'form-control'])    }}
                     </div>
         
                     <div class="form-group">
                         {{  Form::submit('guardar', ['class' => 'btn btn-primary '])    }}
-                        <a href="{{route('bitacora.indexEstudiante')}}" style="float:right" class="btn bn-sm btn-primary">Volver</a>
+                        <a href="{{route('bitacora.indexProfesor')}}" style="float:right" class="btn bn-sm btn-primary">Volver</a>
                     </div>
 
                 {!!Form::close()!!}

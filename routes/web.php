@@ -24,15 +24,34 @@ Route::get('indexEstudiante', 'BitacoraController@indexEstudiante')->name('bitac
 Route::get('indexProfesor', 'BitacoraController@indexProfesor');
 Route::get('indexProfesor', 'BitacoraController@indexProfesor')->name('bitacora.indexProfesor');
 Route::resource('bitacora', 'BitacoraController');
+Route::get('/indexProfesor/{id}','AvanceController@indexProfesor');
+Route::get('/indexProfesor/{id}','AvanceController@indexProfesor')->name('indexProfesor');
+
+Route::get('/index/{id}','ComentarioController@index');
+Route::get('/index/{id}','ComentarioController@index')->name('indexComentario');
+
+
+
+
 Route::get('/indice/{id}', 'AvanceController@index')->name('indice');
 Route::get('/crear/{id}', 'AvanceController@create')->name('crear');
 
-
+Route::get('/comen/{id}', 'ComentarioController@index')->name('comen');
+Route::get('/showProfesor/{id}', 'AvanceController@showProfesor');
+Route::get('/showProfesor/{id}', 'AvanceController@showProfesor')->name('avance.showProfesor');
 Route::resource('avance', 'AvanceController');
 Route::resource('user', 'UserController');
+
+Route::get('/com/{id}','ComentarioController@create');
+Route::get('/com/{id}','ComentarioController@create')->name('com');
+
+Route::resource('comentario','ComentarioController');
+
+
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 

@@ -107,4 +107,23 @@ class AvanceController extends Controller
         avance::find($id)->delete();
         return back();
     }
+
+    public function indexProfesor($id){
+
+        $avances = Avance::where('bitacora_id', $id)->get();
+        $bitacora_id=$id;
+
+        return view('avance.indexProfesor', compact('avances', 'bitacora_id'));
+
+    }
+
+
+    public function showProfesor($id)
+    {
+        $avance = Avance::find($id);
+        return view('avance.showProfesor',compact('avance'));
+    }
+
+
+
 }
