@@ -48,7 +48,8 @@ class BitacoraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {    
+    {   
+        
         $profesor1= $request->input('profesor1_id');
         $profesor2= $request->input('profesor2_id');
         $tesista1 = $request->input('tesista1_id');
@@ -58,40 +59,44 @@ class BitacoraController extends Controller
         $titulo = $request->input('nombre');
         $user_id = $request->input('user_id');
 
-        if($tesista1 != $tesista2 and $tesista1 != $tesista3 and $tesista1 != $tesista4 and $tesista2 != $tesista3 and $tesista2 != $tesista4 and $tesista3 != $tesista4){
-            if($profesor1 != $profesor2){
-                
-                if($profesor2 == 100){
-                    $profesor2 = null;
-                }
-        
-                if($tesista2 == 101){
-                    $tesista2 = null;
-                }
-                if($tesista3 == 102){
-                    $tesista3 = null;
-                }
-                if($tesista4 == 103){
-                    $tesista4 = null;
-                }
+        if($titulo == 1){
+            if($tesista1 != $tesista2 and $tesista1 != $tesista3 and $tesista1 != $tesista4 and $tesista2 != $tesista3 and $tesista2 != $tesista4 and $tesista3 != $tesista4){
+                if($profesor1 != $profesor2){
+                    
+                    if($profesor2 == 100){
+                        $profesor2 = null;
+                    }
+            
+                    if($tesista2 == 101){
+                        $tesista2 = null;
+                    }
+                    if($tesista3 == 102){
+                        $tesista3 = null;
+                    }
+                    if($tesista4 == 103){
+                        $tesista4 = null;
+                    }
 
-                $bitacora = Bitacora::create([
-                    'nombre' => $titulo,
-                    'profesor1_id' => $profesor1,
-                    'profesor2_id' => $profesor2,
-                    'tesista1_id' => $tesista1,
-                    'tesista2_id' => $tesista2,
-                    'tesista3_id' => $tesista3,
-                    'tesista4_id' => $tesista4,
-                    'user_id' => $user_id,
-                ]);
-                //$this->sendEmailReminder($bitacora);
-                return redirect()->route('bitacora.index');
+                    $bitacora = Bitacora::create([
+                        'nombre' => $titulo,
+                        'profesor1_id' => $profesor1,
+                        'profesor2_id' => $profesor2,
+                        'tesista1_id' => $tesista1,
+                        'tesista2_id' => $tesista2,
+                        'tesista3_id' => $tesista3,
+                        'tesista4_id' => $tesista4,
+                        'user_id' => $user_id,
+                    ]);
+                    //$this->sendEmailReminder($bitacora);
+                    return redirect()->route('bitacora.index');
+                }else{
+                    return back()->with('error', 'Ha ingresado dos profesores iguales en los campos');
+                }
             }else{
-                return back()->with('error', 'Ha ingresado dos profesores iguales en los campos');
+                return back()->with('error', 'Ha ingresado el mismo estudiante en los campos');
             }
         }else{
-            return back()->with('error', 'Ha ingresado el mismo estudiante en los campos');
+            return back()->with('error', 'Ingerse nombre del trabajo');
         }
        
     }

@@ -2,7 +2,7 @@
 
 <!--Hereda código de app.blade-->
 @section('content')
-    @if(Auth::user()!=null && Auth::user()->rol=='Secretaria' )   
+    @if(Auth::user()!=null && Auth::user()->rol=='Secretaria'||  Auth::user()->rol=='Encargado de titulacion')   
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
