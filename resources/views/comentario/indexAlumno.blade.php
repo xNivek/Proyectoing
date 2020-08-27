@@ -8,8 +8,7 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="card">
                         <div class="card-header">
-                            Lista de avances
-                            <a href="{{route('crear',$bitacora_id)}}" style="float:right" class="btn bn-sm btn-primary">Crear</a>
+                            Lista de Comentarios
                         </div>
                     </div>
 
@@ -18,7 +17,7 @@
                             <thread>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Nombre avance</th>
+                                    <th>Nombre Comentario</th>
                                     <th>Usuario</th>
                                     <th>Fecha Creación</th>
                                     <th>Fecha Actualización</th>
@@ -27,37 +26,37 @@
                             </thread>
 
                             <tbody>
-                                @foreach($avances as $avance)
+                                @foreach($comentario as $comentario)
                                     <tr>
-                                        <td>{{$avance->id}}</td>
-                                        <td>{{$avance->nombre}}</td>
-                                        <td>{{App\User::find($avance->user_id)->name}}</td>
-                                        <td>{{$avance->created_at}}</td>
-                                        <td>{{$avance->updated_at}}</td>
+                                        <td>{{$comentario->id}}</td>
+                                        <td>{{$comentario->nombre}}</td>|
+                                        <td>{{App\User::find($comentario->user_id)->name}}</td>
+                                        <td>{{$comentario->created_at}}</td>
+                                        <td>{{$comentario->updated_at}}</td>
 
                                         <td >
-                                            <a href="{{ route('avance.show', $avance->id) }}" class="btn btn-sm btn-primary">Ver</a>
-                                            <a href="{{ route('avance.edit', $avance->id) }}" class="btn btn-sm btn-primary">Editar</a>
-                                            <a href="{{ route('indexComentario', $avance->id) }}" class="btn btn-sm btn-primary">Ver Comentario</a>
-                                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal"  onclick="saveNameFile('{{$avance->nombre}}_bitacora_{{$avance->bitacora_id}}_avance_{{$avance->id}}','{{$avance->id}}')">Subir Archivo</button>
-                                            @if ($avance->ruta != NULL)
+                                            <a href="{{ route('comentario.show', $comentario->id) }}" class="btn btn-sm btn-primary">Ver</a>
+                                            <a href="{{ route('comentario.edit', $comentario->id) }}" class="btn btn-sm btn-primary">Editar</a>
+                                            
+                                            <!--<button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal"  onclick="saveNameFile('{{$comentario->nombre}}_bitacora_{{$comentario->bitacora_id}}_comentario_{{$comentario->id}}','{{$comentario->id}}')">Subir Archivo</button>-->
+                                            @if ($comentario->ruta != NULL)
 
-                                                <a href="{{ $avance->ruta }}" download class="btn btn-sm btn-primary">Descargar</a>
+                                                <a href="{{ $comentario->ruta }}" download class="btn btn-sm btn-primary">Descargar</a>
 
                                             @endif
-                                            {!!Form::open(['route'=>['avance.destroy',$avance->id],'method'=>'DELETE'])!!}
+                                            {!!Form::open(['route'=>['comentario.destroy',$comentario->id],'method'=>'DELETE'])!!}
                                                 <button class="btn btn-sm btn-danger">
                                                     Eliminar
                                                 </button>
                                             {!!Form::close()!!}
                                             
                                             <input id="id" type="hidden" class="form-control" name="id" value="" >
-                                            {!! Form::model($avance,['route' => ['avance.update', $avance->id],'method'=>'PUT'])!!}
-                                                @include('avance.partials.form')
+                                            {!! Form::model($comentario,['route' => ['comentario.update', $comentario->id],'method'=>'PUT'])!!}
+                                                @include('comentario.partials.form')
 
                                                 {{ Form::hidden('user_id', auth()->user()->id)}}
-                                                <input id="ruta_{{$avance->id}}" type="hidden" class="form-control" name="ruta" value="" >
-                                                <button id="btn_{{$avance->id}}" style="display:none" class="btn btn-sm btn-primary" type="submit" hidden></button>
+                                                <input id="ruta_{{$comentario->id}}" type="hidden" class="form-control" name="ruta" value="" >
+                                                <button id="btn_{{$comentario->id}}" style="display:none" class="btn btn-sm btn-primary" type="submit" hidden></button>
                                             {!!Form::close()!!}
                                         </td>
                                         <td>
@@ -112,9 +111,9 @@
                 var pos = extension.length-1;
                 var name = document.getElementById('idTxt').value+'.';
                 var myFileName = name+extension[pos];
-                var idAvance = document.getElementById('id').value;
-                document.getElementById('ruta_'+idAvance).value='http://localhost:8000/Archivos/'+myFileName;
-                document.getElementById('btn_'+idAvance).click();
+                var idcomentario = document.getElementById('id').value;
+                document.getElementById('ruta_'+idcomentario).value='http://localhost:8000/Archivos/'+myFileName;
+                document.getElementById('btn_'+idcomentario).click();
                 return myFileName;
             },
             removedfile: function(file) {

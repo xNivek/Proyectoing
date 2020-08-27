@@ -62,6 +62,8 @@ class ComentarioController extends Controller
      */
     public function show($id)
     {
+        $comentario = Comentario::find($id);
+        return view('comentario.show',compact('comentario'));
         
     }
 
@@ -74,7 +76,8 @@ class ComentarioController extends Controller
     public function edit($id)
     {
         $comentario = Comentario::find($id);
-        return view('comentario.show',compact('comentario'));
+        return view('comentario.edit',compact('comentario'));
+        //return redirect()->route('indexComentario', ['id'=>$request->input('avance_id')]);
     }
 
     /**
@@ -86,9 +89,11 @@ class ComentarioController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $comentario= Comentario::find($id);
         $comentario->fill($request->all())->save();
-        return redirect()->route('comentario.index');
+        return redirect()->route('bitacora.indexProfesor');
+        
     }
 
     /**
@@ -102,4 +107,16 @@ class ComentarioController extends Controller
         Comentario::find($id)->delete();
         return back();
     }
+
+
+
+    public function indexAlumno($id){
+
+        $comentario = Comentario::where('avance_id', $id)->get();
+        $avance_id=$id;
+
+        return view('Alumno', compact('comentario', 'avance_id'));
+
+    }
+
 }

@@ -33,7 +33,7 @@
         
                     <div class="form-group">
                         {{  Form::submit('guardar', ['class' => 'btn btn-primary '])    }}
-                        <a href="{{route('bitacora.indexProfesor')}}" style="float:right" class="btn bn-sm btn-primary">Volver</a>
+                        <a href="{{route('indexComentario',$avance_id)}}" style="float:right" class="btn bn-sm btn-primary">Volver</a>
                     </div>
 
                 {!!Form::close()!!}

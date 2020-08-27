@@ -33,6 +33,9 @@ Route::get('/index/{id}','ComentarioController@index')->name('indexComentario');
 
 
 
+
+
+
 Route::get('/indice/{id}', 'AvanceController@index')->name('indice');
 Route::get('/crear/{id}', 'AvanceController@create')->name('crear');
 

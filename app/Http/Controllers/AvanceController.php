@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Avance;
 use App\Bitacora;
+use App\Comentario;
 
 class AvanceController extends Controller
 {
@@ -125,6 +126,7 @@ class AvanceController extends Controller
         $avance = Avance::find($id);
         return view('avance.showProfesor',compact('avance'));
     }
+
 
 
 

@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2">
             <div class="card">
                 <div class="card-header">
                     Ver comentario
@@ -19,7 +19,11 @@
                 </div>
 
             </div>
-                <a href="{{ route('bitacora.indexEstudiante') }}"class= "btn btn-primary">Volver</a>
+                @if(Auth::user()->rol=='Profesor guia')
+                    <a href="{{ route('bitacora.indexProfesor') }}"class= "btn btn-primary">Volver</a>
+                @elseif(Auth::user()->rol=='Estudiante tesista')  
+                     <a href="{{ route('bitacora.indexEstudiante') }}"class= "btn btn-primary">Volver</a>  
+                @endif     
         </div>
     </div>
 </div>

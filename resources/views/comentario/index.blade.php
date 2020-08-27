@@ -9,9 +9,10 @@
                     <div class="card">
                         <div class="card-header">
                             Lista de Comentarios
-                            
-                            <a href="{{route('com',$avance_id)}}" style="float:right" class="btn bn-sm btn-primary">Crear</a>
-                        </div>
+                            @if(Auth::user()->rol=='Profesor guia')
+                                <a href="{{route('com',$avance_id)}}" style="float:right" class="btn bn-sm btn-primary">Crear</a>
+                            @endif
+                         </div>
                     </div>
 
                     <div class="card-body">
@@ -38,19 +39,22 @@
 
                                         <td >
                                             <a href="{{ route('comentario.show', $comentario->id) }}" class="btn btn-sm btn-primary">Ver</a>
-                                            <a href="{{ route('comentario.edit', $comentario->id) }}" class="btn btn-sm btn-primary">Editar</a>
+                                            @if(Auth::user()->rol=='Profesor guia')
+                                                <a href="{{ route('comentario.edit', $comentario->id) }}" class="btn btn-sm btn-primary">Editar</a>
+                                            @endif
                                             
-                                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal"  onclick="saveNameFile('{{$comentario->nombre}}_bitacora_{{$comentario->bitacora_id}}_comentario_{{$comentario->id}}','{{$comentario->id}}')">Subir Archivo</button>
+                                            <!--<button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal"  onclick="saveNameFile('{{$comentario->nombre}}_bitacora_{{$comentario->bitacora_id}}_comentario_{{$comentario->id}}','{{$comentario->id}}')">Subir Archivo</button>
                                             @if ($comentario->ruta != NULL)
 
                                                 <a href="{{ $comentario->ruta }}" download class="btn btn-sm btn-primary">Descargar</a>
+                                                
 
-                                            @endif
-                                            {!!Form::open(['route'=>['comentario.destroy',$comentario->id],'method'=>'DELETE'])!!}
+                                            @endif-->
+                                           <!-- {!!Form::open(['route'=>['comentario.destroy',$comentario->id],'method'=>'DELETE'])!!}
                                                 <button class="btn btn-sm btn-danger">
                                                     Eliminar
                                                 </button>
-                                            {!!Form::close()!!}
+                                            {!!Form::close()!!}-->
                                             
                                             <input id="id" type="hidden" class="form-control" name="id" value="" >
                                             {!! Form::model($comentario,['route' => ['comentario.update', $comentario->id],'method'=>'PUT'])!!}

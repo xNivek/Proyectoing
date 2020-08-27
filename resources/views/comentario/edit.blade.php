@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2">
             <div class="card">
 
                 <div class="card-header">
@@ -31,7 +31,7 @@
 
                     <div class="form-group">
                         {{  Form::submit('guardar', ['class' => 'btn btn-primary '])    }}
-                        <a href="{{ route('bitacora.indexEstudiante') }}" style="float:right" class= "btn btn-primary">Volver</a>
+                        <a href="{{ route('bitacora.indexProfesor') }}" style="float:right" class= "btn btn-primary">Volver</a>
                     </div>
 
                 {!!Form::close()!!}
