@@ -24,6 +24,7 @@ class CreateBitacorasTable extends Migration
             $table->integer('tesista4_id')->unsigned()->nullable();
 
             $table->integer('user_id')->unsigned();
+            $table->enum('status', ['En Desarollo', 'No continuidad', 'Aprobacion'])->default('En Desarollo');
 
             $table->foreign('profesor1_id')->references('id')->on('users');
             $table->foreign('profesor2_id')->references('id')->on('users');    
@@ -33,6 +34,8 @@ class CreateBitacorasTable extends Migration
             $table->foreign('tesista4_id')->references('id')->on('users');     
 
             $table->foreign('user_id')->references('id')->on('users');  
+
+            
             
             $table->timestamps();
         });

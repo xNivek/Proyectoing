@@ -192,9 +192,41 @@ class BitacoraController extends Controller
      */
     public function destroy($id)
     {
-        $bitacora = Bitacora::find($id)->delete();
-        return back()->with('info','Eliminado correctamente');
+        $bitacora = Bitacora::find($id);
+        if($bitacora->status == "En Desarollo")
+        {
+            $bitacora->status="No continuidad";
+        }
+        else
+        {
+            $bitacora->status="En Desarollo";
+        }
+        $bitacora->save();
+
+        //return redirect()->route('bitacora.index')->with('info','Bitacora Finalizada por no continuidad');
+        return back();
     }
+    public function combio($id)
+    {
+        $bitacora = Bitacora::find($id);
+        if($bitacora->status == "En Desarollo")
+        {
+            $bitacora->status="Aprobacion";
+        }
+        else
+        {
+            $bitacora->status="En Desarollo";
+        }
+        $bitacora->save();
+
+        //return redirect()->route('bitacora.index')->with('info','Bitacora Finalizada por aprobacion');
+        return back();
+    }
+
+
+
+
+
 
     //metodos propios
 

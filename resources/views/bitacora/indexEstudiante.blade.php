@@ -30,10 +30,11 @@
                                     @if(Auth::user()->id==$bitacora->tesista1_id || Auth::user()->id==$bitacora->tesista2_id || Auth::user()->id==$bitacora->tesista3_id || Auth::user()->id==$bitacora->tesista4_id)
                                         <tr>
                                             <td>{{$bitacora->id}}</td>
-                                            <td>{{$bitacora->nombre}}</td>  
+                                            <td>{{$bitacora->nombre}}</td> 
+                                            <td>{{App\User::find($bitacora->user_id)->name}}</td> 
                                             <td>{{$bitacora->created_at}}</td>
                                             <td>{{$bitacora->updated_at}}</td>
-                                            <td>{{App\User::find($bitacora->user_id)->name}}</td>
+                                            
                                             <td >
                                                 <a href="{{ route('bitacora.show', $bitacora->id) }}" class="btn btn-sm btn-primary">Ver</a>
                                                 <a href="{{ route('indice', $bitacora->id) }}" class="btn btn-sm btn-primary">Avance</a>

@@ -19,6 +19,8 @@
                                     <th>ID</th>
                                     <th>Nombre del trabajo</th>
                                     <th>Creador</th>
+                                    <th>Fecha Creación</th>
+                                    <th>Fecha Actualización</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thread>
@@ -28,8 +30,11 @@
                                     @if(Auth::user()->id==$bitacora->profesor1_id || Auth::user()->id==$bitacora->profesor2_id)
                                         <tr>
                                             <td>{{$bitacora->id}}</td>
-                                            <td>{{$bitacora->nombre}}</td>  
+                                            <td>{{$bitacora->nombre}}</td> 
                                             <td>{{App\User::find($bitacora->user_id)->name}}</td>
+                                            <td>{{$bitacora->created_at}}</td>
+                                            <td>{{$bitacora->updated_at}}</td>
+                                            
                                             <td >
                                                 <a href="{{ route('bitacora.show', $bitacora->id) }}" class="btn btn-sm btn-primary">Ver</a>
                                                 <a href="{{ route('indexProfesor', $bitacora->id) }}" class="btn btn-sm btn-primary">Avances</a>
