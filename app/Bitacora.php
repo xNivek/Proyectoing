@@ -15,6 +15,8 @@ class Bitacora extends Model
         'tesista3_id',
         'tesista4_id',
         'user_id',
+        'created_at',
+        'updated_at',
     ];
 
     public function user(){
