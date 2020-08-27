@@ -32,10 +32,10 @@ class ComentarioController extends Controller
     public function create($id)
     {
         
-        $avance_id = Comentario::find($id);
-        $bitacora_id = $id;
+       
+        $avance_id=$id;
         
-        return view('comentario.create', compact('avance_id', 'bitacora_id'));
+        return view('comentario.create', compact('avance_id'));
 
     }
 
@@ -47,8 +47,11 @@ class ComentarioController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
+        //dd($request->input('avance_id'));
         $comentario = Comentario::create($request->all());
-        return redirect()->route('comentario.index');
+       // return redirect()->route('bitacora.indexProfesor');
+        return redirect()->route('indexComentario', ['id'=>$request->input('avance_id')]);
     }
 
     /**
