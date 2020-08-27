@@ -40,9 +40,16 @@
                                             <a href="{{ route('bitacora.show', $bitacora->id) }}" class="btn btn-sm btn-primary">Ver</a>
                                             <!--<a href="{{ route('indice', $bitacora->id) }}" class="btn btn-sm btn-primary">Avance</a>--> 
                                             <a href="{{ route('bitacora.edit', $bitacora->id) }}" class="btn btn-sm btn-primary">Editar</a>
-                                            <a href="{{ route('bitacora.destroy',$bitacora->id)}}" class="btn btn-sm btn-danger">Finalizar por No Continuidad</a>
-                                            <a href="{{ route('cambio',$bitacora->id)}}" class="btn btn-sm btn-danger">Finalizar por Aprobacion </a>
+                                            <a href="" class="btn btn-sm btn-danger">Finalizar por No Continuidad</a>
+                                            <a href="" class="btn btn-sm btn-danger">Finalizar por Aprobacion </a>
+                                            
+
+                                            
+
+
+
                                         </td>  
+                                         
                                     </tr>
                                 @endforeach
                             </tbody>
