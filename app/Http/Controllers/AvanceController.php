@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Avance;
 use App\Bitacora;
 use App\Comentario;
+use App\User;
 
 class AvanceController extends Controller
 {
@@ -43,7 +44,7 @@ class AvanceController extends Controller
     {
         //dd($request->all());
         $avance = Avance::create($request->all());
-
+        $this->sendEmailAvance($avance);
         return redirect()->route('bitacora.indexEstudiante');
     }
 
@@ -127,7 +128,34 @@ class AvanceController extends Controller
         return view('avance.showProfesor',compact('avance'));
     }
 
+    private function sendEmailAvance($avance)
+    {
+        $bitacora = bitacora::find($avance->bitacora_id);
+        $user = user::find($bitacora->profesor1_id);        
+        $para      = $user->email;
+        $titulo    = 'Avance de la bitacora '.$bitacora->nombre;
+        $mensaje   = 'Se ha creado un avance';
+        $cabeceras = 'From: lucarionot@gmail.com' . "\r\n" .
+            'Reply-To: lucarionot@gmail.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
 
+        mail($para, $titulo, $mensaje, $cabeceras);
+
+        if ($bitacora->profesor2_id){
+            
+            $user = user::find($bitacora->profesor2_id);
+            $para      = $user->email;
+            $titulo    = 'Avance de la bitacora '.$bitacora->nombre;
+            $mensaje   = 'Se ha creado un avance';
+            $cabeceras = 'From: lucarionot@gmail.com' . "\r\n" .
+                'Reply-To: lucarionot@gmail.com' . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+    
+            mail($para, $titulo, $mensaje, $cabeceras);
+
+        }
+
+    }
 
 
 }

@@ -59,7 +59,7 @@ class BitacoraController extends Controller
         $titulo = $request->input('nombre');
         $user_id = $request->input('user_id');
 
-        if($titulo == 1){
+       
             if($tesista1 != $tesista2 and $tesista1 != $tesista3 and $tesista1 != $tesista4 and $tesista2 != $tesista3 and $tesista2 != $tesista4 and $tesista3 != $tesista4){
                 if($profesor1 != $profesor2){
                     
@@ -87,7 +87,7 @@ class BitacoraController extends Controller
                         'tesista4_id' => $tesista4,
                         'user_id' => $user_id,
                     ]);
-                    //$this->sendEmailReminder($bitacora);
+                    $this->sendEmailInicioTrabajo($bitacora);
                     return redirect()->route('bitacora.index');
                 }else{
                     return back()->with('error', 'Ha ingresado dos profesores iguales en los campos');
@@ -95,9 +95,7 @@ class BitacoraController extends Controller
             }else{
                 return back()->with('error', 'Ha ingresado el mismo estudiante en los campos');
             }
-        }else{
-            return back()->with('error', 'Ingerse nombre del trabajo');
-        }
+        
        
     }
 
@@ -247,20 +245,77 @@ class BitacoraController extends Controller
         return view('bitacora.indexProfesor', compact('bitacoras'));
     }
 
-    private function sendEmailReminder($bitacora)
+    private function sendEmailInicioTrabajo($bitacora)
     {
-        // Please specify your Mail Server - Example: mail.yourdomain.com.
-        ini_set("SMTP","tsl://smtp.gmail.com");
-
-        // Please specify an SMTP Number 25 and 8889 are valid SMTP Ports.
-        ini_set("smtp_port","587");
-        $para      = 'jp.matepreucn@gmail.com';
-        $titulo    = 'El título';
-        $mensaje   = 'Hola';
+        $user = user::find($bitacora->profesor1_id);
+        $para      = $user->email;
+        $titulo    = 'Inicio de trabajo: '.$bitacora->nombre;
+        $mensaje   = 'Se ha iniciado un trabajo de titulo';
         $cabeceras = 'From: lucarionot@gmail.com' . "\r\n" .
             'Reply-To: lucarionot@gmail.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
         mail($para, $titulo, $mensaje, $cabeceras);
+
+        $user = user::find($bitacora->tesista1_id);
+        $para      = $user->email;
+        $titulo    = 'Inicio de trabajo: '.$bitacora->nombre;
+        $mensaje   = 'Se ha iniciado un trabajo de titulo';
+        $cabeceras = 'From: lucarionot@gmail.com' . "\r\n" .
+            'Reply-To: lucarionot@gmail.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        mail($para, $titulo, $mensaje, $cabeceras);
+
+        if ($bitacora->profesor2_id){
+            $user = user::find($bitacora->profesor2_id);
+            $para      = $user->email;
+            $titulo    = 'Inicio de trabajo: '.$bitacora->nombre;
+            $mensaje   = 'Se ha iniciado un trabajo de titulo';
+            $cabeceras = 'From: lucarionot@gmail.com' . "\r\n" .
+                'Reply-To: lucarionot@gmail.com' . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+    
+            mail($para, $titulo, $mensaje, $cabeceras);
+
+        }
+
+        if ($bitacora->tesista2_id){
+            $user = user::find($bitacora->tesista2_id);
+            $para      = $user->email;
+            $titulo    = 'Inicio de trabajo: '.$bitacora->nombre;
+            $mensaje   = 'Se ha iniciado un trabajo de titulo';
+            $cabeceras = 'From: lucarionot@gmail.com' . "\r\n" .
+            'Reply-To: lucarionot@gmail.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+            mail($para, $titulo, $mensaje, $cabeceras);
+        }
+
+        if ($bitacora->tesista3_id){
+            $user = user::find($bitacora->tesista3_id);
+            $para      = $user->email;
+            $titulo    = 'Inicio de trabajo: '.$bitacora->nombre;
+            $mensaje   = 'Se ha iniciado un trabajo de titulo';
+            $cabeceras = 'From: lucarionot@gmail.com' . "\r\n" .
+            'Reply-To: lucarionot@gmail.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+            mail($para, $titulo, $mensaje, $cabeceras);
+        }
+
+        if ($bitacora->tesista4_id){
+            $user = user::find($bitacora->tesista4_id);
+            $para      = $user->email;
+            $titulo    = 'Inicio de trabajo: '.$bitacora->nombre;
+            $mensaje   = 'Se ha iniciado un trabajo de titulo';
+            $cabeceras = 'From: lucarionot@gmail.com' . "\r\n" .
+            'Reply-To: lucarionot@gmail.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+            mail($para, $titulo, $mensaje, $cabeceras);
+        }
+
     }
+
 }
